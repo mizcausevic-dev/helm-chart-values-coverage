@@ -1,0 +1,8 @@
+image:
+  repository: ghcr.io/example/api
+  # tag is missing on purpose
+
+replicaCount: 3
+
+# legacyKey is declared but never referenced
+legacyKey: "deprecated"

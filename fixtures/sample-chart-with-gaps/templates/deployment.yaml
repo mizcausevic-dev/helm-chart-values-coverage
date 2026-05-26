@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    spec:
+      containers:
+        - name: app
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          # .Values.image.tag is referenced but missing from values.yaml — missing-default
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          # .Values.image.pullPolicy is also missing
+          env:
+            - name: SERVICE_URL
+              value: {{ .Values.service.url }}
+              # service.url is missing entirely
